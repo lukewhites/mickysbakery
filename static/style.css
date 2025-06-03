@@ -53,3 +53,21 @@ nav a {
   border-radius: 6px;
 }
 
+.form-container h2 {
+  color: #f7941d;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-container input[type="text"],
+.form-container input[type="password"],
+.form-container input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+

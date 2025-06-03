@@ -1,18 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Login - Pasticceria{% endblock %}
 {% block content %}
-<style>
-.form-container input[type="text"],
-.form-container input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 16px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
-    box-sizing: border-box;
-}
-</style>
 <div class="form-container" style="max-width:350px;margin:40px auto;background:#fff;padding:30px 25px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.12);">
     <h2 style="color:#f7941d;margin-bottom:20px; text-align:center;">Login</h2>
     <form method="post" action="/login">
