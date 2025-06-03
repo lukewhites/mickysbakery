@@ -9,7 +9,70 @@
         <input type="text" name="cognome" placeholder="Cognome" required style="width:100%;padding:10px;margin-bottom:14px;border:1px solid #ddd;border-radius:5px;font-size:1rem;">
         <input type="password" name="password" placeholder="Password" required style="width:100%;padding:10px;margin-bottom:14px;border:1px solid #ddd;border-radius:5px;font-size:1rem;">
         <input type="email" name="email" placeholder="Email" required style="width:100%;padding:10px;margin-bottom:14px;border:1px solid #ddd;border-radius:5px;font-size:1rem;">
-        <input type="text" name="telefono" placeholder="Telefono" required style="width:100%;padding:10px;margin-bottom:18px;border:1px solid #ddd;border-radius:5px;font-size:1rem;">
+        <div style="display:flex;gap:8px;margin-bottom:18px;">
+            <select name="country_code" required style="width:110px;padding:10px;border:1px solid #ddd;border-radius:5px;font-size:1rem;">
+                <option value="+39">🇮🇹 +39 Italia</option>
+                <option value="+1">🇺🇸 +1 United States</option>
+                <option value="+44">🇬🇧 +44 United Kingdom</option>
+                <option value="+33">🇫🇷 +33 France</option>
+                <option value="+49">🇩🇪 +49 Deutschland</option>
+                <option value="+34">🇪🇸 +34 España</option>
+                <option value="+41">🇨🇭 +41 Schweiz</option>
+                <option value="+43">🇦🇹 +43 Österreich</option>
+                <option value="+351">🇵🇹 +351 Portugal</option>
+                <option value="+32">🇧🇪 +32 België</option>
+                <option value="+31">🇳🇱 +31 Nederland</option>
+                <option value="+420">🇨🇿 +420 Česká republika</option>
+                <option value="+48">🇵🇱 +48 Polska</option>
+                <option value="+36">🇭🇺 +36 Magyarország</option>
+                <option value="+40">🇷🇴 +40 România</option>
+                <option value="+30">🇬🇷 +30 Ελλάδα</option>
+                <option value="+7">🇷🇺 +7 Россия</option>
+                <option value="+90">🇹🇷 +90 Türkiye</option>
+                <option value="+81">🇯🇵 +81 日本</option>
+                <option value="+86">🇨🇳 +86 中国</option>
+                <option value="+91">🇮🇳 +91 भारत</option>
+                <option value="+61">🇦🇺 +61 Australia</option>
+                <option value="+353">🇮🇪 +353 Éire</option>
+                <option value="+46">🇸🇪 +46 Sverige</option>
+                <option value="+47">🇳🇴 +47 Norge</option>
+                <option value="+45">🇩🇰 +45 Danmark</option>
+                <option value="+358">🇫🇮 +358 Suomi</option>
+                <option value="+380">🇺🇦 +380 Україна</option>
+                <option value="+421">🇸🇰 +421 Slovensko</option>
+                <option value="+386">🇸🇮 +386 Slovenija</option>
+                <option value="+385">🇭🇷 +385 Hrvatska</option>
+                <option value="+381">🇷🇸 +381 Србија</option>
+                <option value="+359">🇧🇬 +359 България</option>
+                <option value="+357">🇨🇾 +357 Κύπρος</option>
+                <option value="+372">🇪🇪 +372 Eesti</option>
+                <option value="+370">🇱🇹 +370 Lietuva</option>
+                <option value="+371">🇱🇻 +371 Latvija</option>
+                <option value="+356">🇲🇹 +356 Malta</option>
+                <option value="+423">🇱🇮 +423 Liechtenstein</option>
+                <option value="+352">🇱🇺 +352 Lëtzebuerg</option>
+                <option value="+994">🇦🇿 +994 Azərbaycan</option>
+                <option value="+373">🇲🇩 +373 Moldova</option>
+                <option value="+375">🇧🇾 +375 Беларусь</option>
+                <option value="+995">🇬🇪 +995 საქართველო</option>
+                <option value="+998">🇺🇿 +998 Oʻzbekiston</option>
+                <option value="+961">🇱🇧 +961 لبنان</option>
+                <option value="+972">🇮🇱 +972 ישראל</option>
+                <option value="+966">🇸🇦 +966 السعودية</option>
+                <option value="+971">🇦🇪 +971 الإمارات</option>
+                <option value="+212">🇲🇦 +212 المغرب</option>
+                <option value="+216">🇹🇳 +216 تونس</option>
+                <option value="+20">🇪🇬 +20 مصر</option>
+                <option value="+27">🇿🇦 +27 South Africa</option>
+                <option value="+55">🇧🇷 +55 Brasil</option>
+                <option value="+52">🇲🇽 +52 México</option>
+                <option value="+54">🇦🇷 +54 Argentina</option>
+                <option value="+56">🇨🇱 +56 Chile</option>
+                <option value="+57">🇨🇴 +57 Colombia</option>
+                <option value="+1">🇨🇦 +1 Canada</option>
+            </select>
+            <input type="text" name="telefono" placeholder="Numero di telefono" required style="flex:1;padding:10px;border:1px solid #ddd;border-radius:5px;font-size:1rem;">
+        </div>
         <button type="submit" style="width:100%;background:#f7941d;color:#fff;border:none;padding:12px;border-radius:5px;font-size:1rem;font-weight:bold;cursor:pointer;">Registrati</button>
     </form>
     <a href="/login" style="display:block;margin-top:15px;text-align:center;color:#f7941d;text-decoration:none;">Hai già un account? Accedi</a>

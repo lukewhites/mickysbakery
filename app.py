@@ -65,6 +65,7 @@ def register():
         cognome = request.form["cognome"]
         password = request.form["password"]
         email = request.form["email"]
+        country_code = request.form["country_code"]
         telefono = request.form["telefono"]
 
         # Controllo formato email
@@ -78,6 +79,9 @@ def register():
         if not re.match(telefono_regex, telefono):
             flash("Il numero di telefono deve contenere esattamente 10 cifre.", "danger")
             return render_template("register.html")
+
+        # Unisci prefisso e numero
+        telefono = f"{country_code} {telefono}"
 
         # Criteri di sicurezza per la password
         password_criteria = [
