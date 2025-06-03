@@ -80,11 +80,18 @@ def register():
                 flash(error, "danger")
                 return render_template("register.html")
 
+        # Controllo se username già esistente
+        conn = sqlite3.connect(DB_PATH)
+        cur = conn.cursor()
+        cur.execute("SELECT id FROM utente WHERE username = ?", (username,))
+        if cur.fetchone():
+            flash("Username già esistente. Scegli un altro username.", "danger")
+            conn.close()
+            return render_template("register.html")
+
         # Cifra la password prima di salvarla
         hashed_password = generate_password_hash(password)
 
-        conn = sqlite3.connect(DB_PATH)
-        cur = conn.cursor()
         try:
             cur.execute(
                 "INSERT INTO utente (username, nome, cognome, password, email, telefono) VALUES (?, ?, ?, ?, ?, ?)",
@@ -94,7 +101,7 @@ def register():
             flash("Registrazione completata! Ora puoi accedere.", "success")
             return redirect(url_for("login"))
         except sqlite3.IntegrityError:
-            flash("Username o email già esistenti.", "danger")
+            flash("Errore durante la registrazione.", "danger")
         finally:
             conn.close()
     return render_template("register.html")
