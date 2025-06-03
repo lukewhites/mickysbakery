@@ -1,1 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Prodotti - Pasticceria{% endblock %}
+{% block content %}
+  <section class="prodotti-grid">
+    {% for p in prodotti %}
+      <div class="prodotto">
+        {% if p['immagine'] %}
+          <img src="{{ url_for('static', filename='img/' ~ p['immagine']) }}" alt="{{ p['nome'] }}">
+        {% endif %}
+        <h3>{{ p['nome'] }}</h3>
+        <p>{{ p['descrizione'] }}</p>
+        <strong>{{ "{:.2f}".format(p['prezzo']) }} €</strong>
+      </div>
+    {% endfor %}
+  </section>
+{% endblock %}
 
