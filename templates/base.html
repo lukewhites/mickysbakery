@@ -7,7 +7,8 @@
 </head>
 <body>
   <header>
-    Benvenuti alla Pasticceria
+    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" style="height: 80px;">
+    <div>Benvenuti alla Pasticceria</div>
   </header>
   <nav>
     <a href="{{ url_for('home') }}">Home</a>
