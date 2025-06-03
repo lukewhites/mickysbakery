@@ -106,6 +106,10 @@ def register():
             conn.close()
     return render_template("register.html")
 
+@app.route("/home")
+def home_page():
+    return render_template("home.html")
+
 if __name__ == "__main__":
     print("App is being executed on http://localhost:8080/. Please open this URL in your browser.")
     serve(app, host="0.0.0.0", port=8080)
