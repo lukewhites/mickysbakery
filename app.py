@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 import sqlite3
 import os
+from waitress import serve
 
 app = Flask(__name__)
 DB_PATH = os.path.join("data", "bakery.db")
@@ -24,5 +25,5 @@ def prodotti():
     return render_template("prodotti.html", prodotti=items)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    serve(app, host="0.0.0.0", port=8080)
 
