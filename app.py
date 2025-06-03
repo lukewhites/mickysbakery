@@ -12,7 +12,7 @@ def get_prodotti():
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     cur = conn.cursor()
-    cur.execute("SELECT nome, descrizione, prezzo, immagine FROM prodotti")
+    cur.execute("SELECT id, nome, descrizione FROM prodotti")
     prodotti = cur.fetchall()
     conn.close()
     return prodotti
