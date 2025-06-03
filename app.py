@@ -46,7 +46,7 @@ def login():
         if user and check_password_hash(user[1], password):
             session['user_id'] = user[0]  # user[0] is username
             flash("Login effettuato con successo!", "success")
-            return redirect(url_for("prodotti"))
+            return redirect(url_for("home"))  # <--- redirect to home page
         else:
             flash("Username o password errati.", "danger")
     return render_template("login.html")
