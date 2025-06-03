@@ -83,7 +83,7 @@ def register():
         # Controllo se username già esistente
         conn = sqlite3.connect(DB_PATH)
         cur = conn.cursor()
-        cur.execute("SELECT id FROM utente WHERE username = ?", (username,))
+        cur.execute("SELECT username FROM utente WHERE username = ?", (username,))
         if cur.fetchone():
             flash("Username già esistente. Scegli un altro username.", "danger")
             conn.close()
@@ -107,5 +107,5 @@ def register():
     return render_template("register.html")
 
 if __name__ == "__main__":
-    print("App is being executed on http://localhost:8080/")
+    print("App is being executed on http://localhost:8080/. Please open this URL in your browser.")
     serve(app, host="0.0.0.0", port=8080)
