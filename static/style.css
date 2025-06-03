@@ -7,11 +7,15 @@ body {
 header {
   background-color: #f7941d;
   padding: 20px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
   color: white;
   font-size: 2rem;
   font-weight: bold;
 }
+
 
 nav {
   background-color: #fff;
