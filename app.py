@@ -40,11 +40,11 @@ def login():
         password = request.form["password"]
         conn = sqlite3.connect(DB_PATH)
         cur = conn.cursor()
-        cur.execute("SELECT id, password FROM utente WHERE username = ?", (username,))
+        cur.execute("SELECT username, password FROM utente WHERE username = ?", (username,))
         user = cur.fetchone()
         conn.close()
         if user and check_password_hash(user[1], password):
-            session['user_id'] = user[0]
+            session['user_id'] = user[0]  # user[0] is username
             flash("Login effettuato con successo!", "success")
             return redirect(url_for("prodotti"))
         else:
