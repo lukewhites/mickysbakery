@@ -46,7 +46,7 @@ def login():
         if user and check_password_hash(user[1], password):
             session['user_id'] = user[0]  # user[0] is username
             flash("Login effettuato con successo!", "success")
-            return redirect(url_for("home_page"))  # <-- CORRETTO!
+            return redirect(url_for("home_page"))
         else:
             flash("Username o password errati.", "danger")
     return render_template("login.html")
@@ -66,6 +66,18 @@ def register():
         password = request.form["password"]
         email = request.form["email"]
         telefono = request.form["telefono"]
+
+        # Controllo formato email
+        email_regex = r"^[\w\.-]+@[\w\.-]+\.\w+$"
+        if not re.match(email_regex, email):
+            flash("Inserisci un indirizzo email valido.", "danger")
+            return render_template("register.html")
+
+        # Controllo formato telefono (solo 10 cifre)
+        telefono_regex = r"^\d{10}$"
+        if not re.match(telefono_regex, telefono):
+            flash("Il numero di telefono deve contenere esattamente 10 cifre.", "danger")
+            return render_template("register.html")
 
         # Criteri di sicurezza per la password
         password_criteria = [
