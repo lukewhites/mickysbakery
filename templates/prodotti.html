@@ -94,14 +94,29 @@
             font-size: 1rem;
             min-height: 48px;
         }
-        .logout-link {
+        .main-btn, .logout-link {
             display: block;
             text-align: center;
-            margin: 40px auto 0 auto;
+            margin: 18px auto 0 auto;
             color: #f7941d;
             text-decoration: none;
             font-weight: bold;
-            max-width: 800px;
+            background: #fff;
+            border: none;
+            font-size: 1rem;
+        }
+        .main-btn {
+            background: #f7941d;
+            color: #fff;
+            border-radius: 5px;
+            padding: 10px 28px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 0;
+            transition: background 0.2s;
+        }
+        .main-btn:hover {
+            background: #d97a0b;
         }
         /* Popup Modale */
         #popup-prodotto {
@@ -224,8 +239,8 @@
         </div>
         {% endfor %}
     </div>
-    <a href="/logout" class="logout-link">Logout</a>
     <a href="/home" class="logout-link" style="margin-top:18px;">Torna alla Home</a>
+    <a href="/carrello" class="main-btn" style="margin-top:12px;">Carrello</a>
 
     <!-- Popup Modale -->
     <div id="popup-prodotto">
@@ -243,7 +258,6 @@
             </form>
         </div>
     </div>
-
     <script>
     function apriPopup(id, nome, descrizione) {
         document.getElementById('popup-prodotto').style.display = 'flex';
@@ -259,11 +273,9 @@
         document.getElementById('popup-prodotto').style.display = 'none';
         document.body.style.overflow = '';
     }
-    // Chiudi popup con ESC
     document.addEventListener('keydown', function(e){
         if(e.key === "Escape") chiudiPopup();
     });
-    // Chiudi cliccando fuori dal popup
     document.getElementById('popup-prodotto').addEventListener('click', function(e){
         if(e.target === this) chiudiPopup();
     });
