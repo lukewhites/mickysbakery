@@ -6,53 +6,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
-            background: #f6f6f6;
+            background: linear-gradient(135deg, #fff7e6 0%, #ffe0b2 100%);
             font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
         }
         .header {
             display: flex;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: center;
             background-color: #f7941d;
             padding: 20px 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
-        .header img.logo {
+        .header img {
             height: 70px;
+            margin-right: 20px;
         }
         .header span {
             color: white;
             font-size: 2rem;
             font-weight: bold;
-            margin-left: 20px;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
         .carrello-container {
             max-width: 600px;
-            margin: 40px auto;
+            margin: 48px auto 0 auto;
             background: #fff;
-            padding: 30px 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            padding: 36px 28px;
+            border-radius: 18px;
+            box-shadow: 0 4px 18px rgba(247,148,29,0.10), 0 1.5px 6px rgba(0,0,0,0.06);
+        }
+        .carrello-container h2 {
+            color: #f7941d;
+            margin-bottom: 18px;
             text-align: center;
         }
-        .logout-link {
+        .carrello-list {
+            margin-bottom: 24px;
+        }
+        .carrello-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .carrello-item:last-child {
+            border-bottom: none;
+        }
+        .carrello-nome {
+            font-weight: bold;
+            color: #f7941d;
+            font-size: 1.1rem;
+        }
+        .carrello-quantita {
+            color: #555;
+            font-size: 1rem;
+        }
+        .empty-cart {
+            text-align: center;
+            color: #888;
+            margin: 30px 0 10px 0;
+        }
+        .prodotti-btn, .logout-link {
             display: block;
             text-align: center;
-            margin-top: 20px;
+            margin: 18px auto 0 auto;
             color: #f7941d;
             text-decoration: none;
             font-weight: bold;
+            background: #fff;
+            border: none;
+            font-size: 1rem;
+        }
+        .prodotti-btn {
+            background: #f7941d;
+            color: #fff;
+            border-radius: 5px;
+            padding: 10px 28px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 0;
+            transition: background 0.2s;
+        }
+        .prodotti-btn:hover {
+            background: #d97a0b;
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <img src="{{ url_for('static', filename='image/logo.png') }}" alt="Logo Pasticceria" class="logo">
+        <img src="{{ url_for('static', filename='image/logo.png') }}" alt="Logo Pasticceria">
         <span>Carrello</span>
     </div>
     <div class="carrello-container">
         <h2>Il tuo carrello</h2>
-        <p>Il carrello è attualmente vuoto.</p>
-        <a href="/prodotti" class="logout-link">Torna ai prodotti</a>
+        {% if prodotti %}
+        <div class="carrello-list">
+            {% for prodotto in prodotti %}
+            <div class="carrello-item">
+                <span class="carrello-nome">{{ prodotto['nome'] }}</span>
+                <span class="carrello-quantita">x{{ prodotto['quantita'] }}</span>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-cart">Il carrello è vuoto.</div>
+        {% endif %}
+        <a href="/prodotti" class="prodotti-btn">Torna ai Prodotti</a>
+        <a href="/home" class="logout-link">Torna alla Home</a>
+        <a href="/logout" class="logout-link">Logout</a>
     </div>
 </body>
 </html>

@@ -6,37 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
-            background: #f6f6f6;
+            background: linear-gradient(135deg, #fff7e6 0%, #ffe0b2 100%);
             font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
         }
         .header {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 20px;
             background-color: #f7941d;
-            padding: 20px 0;
+            padding: 20px 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
         .header img {
             height: 70px;
+            margin-right: 20px;
         }
         .header span {
             color: white;
             font-size: 2rem;
             font-weight: bold;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
-        .welcome {
-            text-align: center;
-            margin: 40px auto;
+        .welcome-container {
+            max-width: 400px;
+            margin: 48px auto 0 auto;
             background: #fff;
-            padding: 30px 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-            max-width: 500px;
+            padding: 36px 28px;
+            border-radius: 18px;
+            box-shadow: 0 4px 18px rgba(247,148,29,0.10), 0 1.5px 6px rgba(0,0,0,0.06);
+            text-align: center;
+        }
+        .welcome-container h1 {
+            color: #f7941d;
+            margin-bottom: 18px;
+        }
+        .welcome-container p {
+            color: #555;
+            margin-bottom: 28px;
         }
         .prodotti-btn {
             display: inline-block;
-            margin: 24px auto 0 auto;
             background: #f7941d;
             color: #fff;
             border: none;
@@ -47,6 +58,7 @@
             cursor: pointer;
             text-decoration: none;
             transition: background 0.2s;
+            margin-bottom: 18px;
         }
         .prodotti-btn:hover {
             background: #d97a0b;
@@ -54,7 +66,7 @@
         .logout-link {
             display: block;
             text-align: center;
-            margin-top: 20px;
+            margin-top: 18px;
             color: #f7941d;
             text-decoration: none;
             font-weight: bold;
@@ -64,11 +76,11 @@
 <body>
     <div class="header">
         <img src="{{ url_for('static', filename='image/logo.png') }}" alt="Logo Pasticceria">
-        <span>Benvenuto alla Pasticceria</span>
+        <span>Home</span>
     </div>
-    <div class="welcome">
-        <h1>I Dolci della Tradizione</h1>
-        <p>Scopri le nostre creazioni fresche ogni giorno!</p>
+    <div class="welcome-container">
+        <h1>Benvenuto!</h1>
+        <p>Scopri le nostre creazioni fresche ogni giorno.<br>Visita la sezione prodotti per ordinare i tuoi dolci preferiti.</p>
         <a href="/prodotti" class="prodotti-btn">Vai ai Prodotti</a>
         <a href="/logout" class="logout-link">Logout</a>
     </div>

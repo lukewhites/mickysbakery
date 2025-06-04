@@ -128,7 +128,43 @@ def home_page():
 
 @app.route("/carrello")
 def carrello():
-    return render_template("carrello.html")
+    carrello = session.get("carrello", {})
+    prodotti = []
+    totale = 0
+    if carrello:
+        conn = sqlite3.connect(DB_PATH)
+        conn.row_factory = sqlite3.Row
+        cur = conn.cursor()
+        for prodotto_id, quantita in carrello.items():
+            cur.execute("SELECT id, nome, descrizione FROM prodotti WHERE id = ?", (int(prodotto_id),))
+            prodotto = cur.fetchone()
+            if prodotto:
+                prodotto = dict(prodotto)
+                prodotto["quantita"] = quantita
+                prodotti.append(prodotto)
+        conn.close()
+    return render_template("carrello.html", prodotti=prodotti)
+
+@app.route("/aggiungi_carrello", methods=["POST"])
+def aggiungi_carrello():
+    prodotto_id = request.form.get("prodotto_id")
+    quantita = int(request.form.get("quantita", 1))
+    if not prodotto_id or quantita < 1:
+        flash("Selezione non valida.", "danger")
+        return redirect(url_for("prodotti"))
+
+    # Recupera il carrello dalla sessione o creane uno nuovo
+    carrello = session.get("carrello", {})
+
+    # Aggiorna la quantità del prodotto
+    if prodotto_id in carrello:
+        carrello[prodotto_id] += quantita
+    else:
+        carrello[prodotto_id] = quantita
+
+    session["carrello"] = carrello
+    flash("Prodotto aggiunto al carrello!", "success")
+    return redirect(url_for("prodotti"))
 
 if __name__ == "__main__":
     print("App is being executed on http://localhost:8080/. Please open this URL in your browser.")

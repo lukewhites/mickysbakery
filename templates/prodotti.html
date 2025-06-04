@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
-            background: #f6f6f6;
+            background: linear-gradient(135deg, #fff7e6 0%, #ffe0b2 100%);
             font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
         }
         .header {
             display: flex;
@@ -15,6 +16,7 @@
             justify-content: space-between;
             background-color: #f7941d;
             padding: 20px 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
         .header-left {
             display: flex;
@@ -28,6 +30,8 @@
             color: white;
             font-size: 2rem;
             font-weight: bold;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
         .cart-link {
             display: flex;
@@ -36,6 +40,7 @@
             color: #fff;
             font-size: 1.7rem;
             position: relative;
+            transition: color 0.2s;
         }
         .cart-link:hover {
             color: #ffe0b2;
@@ -45,37 +50,153 @@
             height: 36px;
             display: block;
         }
-        .prodotti-container {
-            max-width: 600px;
-            margin: 40px auto;
+        .prodotti-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            max-width: 800px;
+            margin: 48px auto 0 auto;
+        }
+        .prodotto-card {
             background: #fff;
-            padding: 30px 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            border-radius: 18px;
+            box-shadow: 0 4px 18px rgba(247,148,29,0.10), 0 1.5px 6px rgba(0,0,0,0.06);
+            overflow: hidden;
+            text-align: center;
+            transition: box-shadow 0.2s, transform 0.2s;
+            cursor: pointer;
+            position: relative;
         }
-        .prodotto {
-            border-bottom: 1px solid #eee;
-            padding: 16px 0;
+        .prodotto-card:hover {
+            box-shadow: 0 8px 32px rgba(247,148,29,0.18), 0 3px 12px rgba(0,0,0,0.10);
+            transform: translateY(-4px) scale(1.03);
         }
-        .prodotto:last-child {
-            border-bottom: none;
+        .prodotto-img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            background: #eee;
+            display: block;
+            border-top-left-radius: 18px;
+            border-top-right-radius: 18px;
         }
         .prodotto-nome {
             font-weight: bold;
             color: #f7941d;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
+            margin: 18px 0 8px 0;
+            letter-spacing: 0.5px;
         }
         .prodotto-desc {
             color: #555;
-            margin-top: 4px;
+            margin-bottom: 18px;
+            padding: 0 14px;
+            font-size: 1rem;
+            min-height: 48px;
         }
         .logout-link {
             display: block;
             text-align: center;
-            margin-top: 20px;
+            margin: 40px auto 0 auto;
             color: #f7941d;
             text-decoration: none;
             font-weight: bold;
+            max-width: 800px;
+        }
+        /* Popup Modale */
+        #popup-prodotto {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.35);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeInBg 0.2s;
+        }
+        @keyframes fadeInBg {
+            from { background: rgba(0,0,0,0); }
+            to { background: rgba(0,0,0,0.35); }
+        }
+        .popup-content {
+            background: #fff;
+            padding: 36px 24px 28px 24px;
+            border-radius: 18px;
+            max-width: 370px;
+            width: 92vw;
+            margin: auto;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(247,148,29,0.18), 0 3px 12px rgba(0,0,0,0.10);
+            animation: popupIn 0.25s;
+        }
+        @keyframes popupIn {
+            from { transform: scale(0.92) translateY(30px); opacity: 0; }
+            to { transform: scale(1) translateY(0); opacity: 1; }
+        }
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 14px;
+            background: none;
+            border: none;
+            font-size: 1.7rem;
+            cursor: pointer;
+            color: #f7941d;
+            transition: color 0.2s;
+        }
+        .popup-close:hover {
+            color: #d97a0b;
+        }
+        #popup-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        #popup-nome {
+            color: #f7941d;
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        #popup-desc {
+            color: #555;
+            font-size: 1rem;
+            margin-bottom: 18px;
+            min-height: 40px;
+        }
+        #popup-quantita {
+            width: 60px;
+            margin: 0 10px 18px 10px;
+            padding: 6px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            text-align: center;
+        }
+        .popup-add-btn {
+            background: #f7941d;
+            color: #fff;
+            border: none;
+            padding: 10px 28px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+        .popup-add-btn:hover {
+            background: #d97a0b;
+        }
+        @media (max-width: 800px) {
+            .prodotti-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -93,15 +214,59 @@
             </svg>
         </a>
     </div>
-    <div class="prodotti-container">
-        <h2 style="text-align:center;color:#f7941d;">I nostri prodotti</h2>
+    <div class="prodotti-grid">
         {% for prodotto in prodotti %}
-            <div class="prodotto">
-                <div class="prodotto-nome">{{ prodotto['nome'] }}</div>
-                <div class="prodotto-desc">{{ prodotto['descrizione'] }}</div>
-            </div>
+        <div class="prodotto-card" 
+             onclick="apriPopup('{{ prodotto[',id,'] }}', '{{ prodotto[',nome,']|escape }}', '{{ prodotto[',descrizione,']|escape }}')">
+            <img src="{{ url_for('static', filename='prodotti/' ~ prodotto['id'] ~ '.jpg') }}" alt="{{ prodotto['nome'] }}" class="prodotto-img">
+            <div class="prodotto-nome">{{ prodotto['nome'] }}</div>
+            <div class="prodotto-desc">{{ prodotto['descrizione'] }}</div>
+        </div>
         {% endfor %}
-        <a href="/logout" class="logout-link">Logout</a>
     </div>
+    <a href="/logout" class="logout-link">Logout</a>
+    <a href="/home" class="logout-link" style="margin-top:18px;">Torna alla Home</a>
+
+    <!-- Popup Modale -->
+    <div id="popup-prodotto">
+        <div class="popup-content">
+            <button onclick="chiudiPopup()" class="popup-close" aria-label="Chiudi">&times;</button>
+            <img id="popup-img" src="" alt="" >
+            <h3 id="popup-nome"></h3>
+            <p id="popup-desc"></p>
+            <form method="post" action="/aggiungi_carrello" style="margin-bottom:0;">
+                <input type="hidden" name="prodotto_id" id="popup-id">
+                <label for="quantita" style="font-weight:bold;">Quantità:</label>
+                <input type="number" name="quantita" id="popup-quantita" value="1" min="1" max="99">
+                <br>
+                <button type="submit" class="popup-add-btn">Aggiungi al carrello</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+    function apriPopup(id, nome, descrizione) {
+        document.getElementById('popup-prodotto').style.display = 'flex';
+        document.getElementById('popup-id').value = id;
+        document.getElementById('popup-nome').textContent = nome;
+        document.getElementById('popup-desc').textContent = descrizione;
+        document.getElementById('popup-img').src = "/static/prodotti/" + id + ".jpg";
+        document.getElementById('popup-img').alt = nome;
+        document.getElementById('popup-quantita').value = 1;
+        document.body.style.overflow = 'hidden';
+    }
+    function chiudiPopup() {
+        document.getElementById('popup-prodotto').style.display = 'none';
+        document.body.style.overflow = '';
+    }
+    // Chiudi popup con ESC
+    document.addEventListener('keydown', function(e){
+        if(e.key === "Escape") chiudiPopup();
+    });
+    // Chiudi cliccando fuori dal popup
+    document.getElementById('popup-prodotto').addEventListener('click', function(e){
+        if(e.target === this) chiudiPopup();
+    });
+    </script>
 </body>
 </html>
