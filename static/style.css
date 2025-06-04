@@ -71,3 +71,14 @@ nav a {
   box-sizing: border-box;
 }
 
+.form-container select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  height: 42px; /* uguale agli input se necessario */
+}
+

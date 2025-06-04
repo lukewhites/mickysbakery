@@ -1,9 +1,76 @@
-{% extends "base.html" %}
-{% block title %}Home - Pasticceria{% endblock %}
-{% block content %}
-  <section style="text-align: center; padding: 40px;">
-    <h1>I Dolci della Tradizione</h1>
-    <p>Scopri le nostre creazioni fresche ogni giorno!</p>
-  </section>
-{% endblock %}
-
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Home - Pasticceria</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background: #f6f6f6;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            background-color: #f7941d;
+            padding: 20px 0;
+        }
+        .header img {
+            height: 70px;
+        }
+        .header span {
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .welcome {
+            text-align: center;
+            margin: 40px auto;
+            background: #fff;
+            padding: 30px 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            max-width: 500px;
+        }
+        .prodotti-btn {
+            display: inline-block;
+            margin: 24px auto 0 auto;
+            background: #f7941d;
+            color: #fff;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .prodotti-btn:hover {
+            background: #d97a0b;
+        }
+        .logout-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #f7941d;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="{{ url_for('static', filename='image/logo.png') }}" alt="Logo Pasticceria">
+        <span>Benvenuto alla Pasticceria</span>
+    </div>
+    <div class="welcome">
+        <h1>I Dolci della Tradizione</h1>
+        <p>Scopri le nostre creazioni fresche ogni giorno!</p>
+        <a href="/prodotti" class="prodotti-btn">Vai ai Prodotti</a>
+        <a href="/logout" class="logout-link">Logout</a>
+    </div>
+</body>
+</html>

@@ -126,6 +126,10 @@ def register():
 def home_page():
     return render_template("home.html")
 
+@app.route("/carrello")
+def carrello():
+    return render_template("carrello.html")
+
 if __name__ == "__main__":
     print("App is being executed on http://localhost:8080/. Please open this URL in your browser.")
     serve(app, host="0.0.0.0", port=8080)

@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Login - Pasticceria</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+        body {
+            background: #f6f6f6;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
         .form-container {
             max-width: 350px;
             margin: 40px auto;
@@ -28,6 +31,7 @@
             border-radius: 5px;
             font-size: 1rem;
             box-sizing: border-box;
+            height: 42px;
         }
         .form-container button {
             width: 100%;
@@ -47,11 +51,16 @@
             color: #f7941d;
             text-decoration: none;
         }
+        .logo {
+            display: block;
+            margin: 0 auto 18px auto;
+            max-width: 120px;
+        }
     </style>
 </head>
 <body>
     <div class="form-container">
-        <img src="{{ url_for('static', filename='image/logo.png') }}" alt="Logo Pasticceria" style="display:block;margin:0 auto 18px auto;max-width:120px;">
+        <img src="{{ url_for('static', filename='image/logo.png') }}" alt="Logo Pasticceria" class="logo">
         <h2>Login</h2>
         <form method="post" action="/login">
             <input type="text" name="username" placeholder="Username" required>

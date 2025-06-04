@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Carrello - Pasticceria</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background: #f6f6f6;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background-color: #f7941d;
+            padding: 20px 24px;
+        }
+        .header img.logo {
+            height: 70px;
+        }
+        .header span {
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+        .carrello-container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 30px 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            text-align: center;
+        }
+        .logout-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #f7941d;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="{{ url_for('static', filename='image/logo.png') }}" alt="Logo Pasticceria" class="logo">
+        <span>Carrello</span>
+    </div>
+    <div class="carrello-container">
+        <h2>Il tuo carrello</h2>
+        <p>Il carrello è attualmente vuoto.</p>
+        <a href="/prodotti" class="logout-link">Torna ai prodotti</a>
+    </div>
+</body>
+</html>

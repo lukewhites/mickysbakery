@@ -1,16 +1,76 @@
-{% extends "base.html" %}
-{% block title %}Registrati - Pasticceria{% endblock %}
-{% block content %}
-<div class="form-container" style="max-width:350px;margin:40px auto;background:#fff;padding:30px 25px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.12);">
-    <h2 style="color:#f7941d;margin-bottom:20px;">Registrati</h2>
-    <form method="post" action="/register">
-        <input type="text" name="username" placeholder="Username" required style="width:100%;padding:10px;margin-bottom:14px;border:1px solid #ddd;border-radius:5px;font-size:1rem;">
-        <input type="text" name="nome" placeholder="Nome" required style="width:100%;padding:10px;margin-bottom:14px;border:1px solid #ddd;border-radius:5px;font-size:1rem;">
-        <input type="text" name="cognome" placeholder="Cognome" required style="width:100%;padding:10px;margin-bottom:14px;border:1px solid #ddd;border-radius:5px;font-size:1rem;">
-        <input type="password" name="password" placeholder="Password" required style="width:100%;padding:10px;margin-bottom:14px;border:1px solid #ddd;border-radius:5px;font-size:1rem;">
-        <input type="email" name="email" placeholder="Email" required style="width:100%;padding:10px;margin-bottom:14px;border:1px solid #ddd;border-radius:5px;font-size:1rem;">
-        <div style="display:flex;gap:8px;margin-bottom:18px;">
-            <select name="country_code" required style="width:110px;padding:10px;border:1px solid #ddd;border-radius:5px;font-size:1rem;">
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrati - Pasticceria</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background: #f6f6f6;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        .form-container {
+            max-width: 350px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 30px 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+        }
+        .form-container h2 {
+            color: #f7941d;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .form-container input[type="text"],
+        .form-container input[type="password"],
+        .form-container input[type="email"],
+        .form-container select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 14px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            height: 42px;
+        }
+        .form-container button {
+            width: 100%;
+            background: #f7941d;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .form-container a {
+            display: block;
+            margin-top: 15px;
+            text-align: center;
+            color: #f7941d;
+            text-decoration: none;
+        }
+        .logo {
+            display: block;
+            margin: 0 auto 18px auto;
+            max-width: 120px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <img src="{{ url_for('static', filename='image/logo.png') }}" alt="Logo Pasticceria" class="logo">
+        <h2>Registrati</h2>
+        <form method="post" action="/register">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="text" name="nome" placeholder="Nome" required>
+            <input type="text" name="cognome" placeholder="Cognome" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <select name="country_code" required>
                 <option value="+39">🇮🇹 +39 Italia</option>
                 <option value="+1">🇺🇸 +1 United States</option>
                 <option value="+44">🇬🇧 +44 United Kingdom</option>
@@ -71,10 +131,10 @@
                 <option value="+57">🇨🇴 +57 Colombia</option>
                 <option value="+1">🇨🇦 +1 Canada</option>
             </select>
-            <input type="text" name="telefono" placeholder="Numero di telefono" required style="flex:1;padding:10px;border:1px solid #ddd;border-radius:5px;font-size:1rem;">
-        </div>
-        <button type="submit" style="width:100%;background:#f7941d;color:#fff;border:none;padding:12px;border-radius:5px;font-size:1rem;font-weight:bold;cursor:pointer;">Registrati</button>
-    </form>
-    <a href="/login" style="display:block;margin-top:15px;text-align:center;color:#f7941d;text-decoration:none;">Hai già un account? Accedi</a>
-</div>
-{% endblock %}
+            <input type="text" name="telefono" placeholder="Numero di telefono" required>
+            <button type="submit">Registrati</button>
+        </form>
+        <a href="/login">Hai già un account? Accedi</a>
+    </div>
+</body>
+</html>
