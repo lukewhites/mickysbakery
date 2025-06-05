@@ -169,3 +169,4 @@ def aggiungi_carrello():
 if __name__ == "__main__":
     print("App is being executed on http://localhost:8080/. Please open this URL in your browser.")
     serve(app, host="0.0.0.0", port=8080)
+    # Easter egg to keep the server running
